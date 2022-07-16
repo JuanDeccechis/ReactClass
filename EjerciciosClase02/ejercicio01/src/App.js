@@ -5,16 +5,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     //1- Implementar el state inicial, con una propiedad "selectedLanguage"
-
+    this.state = { selectedLanguage: "All" }
     //2- Bindear el metodo updateLanguage
+    this.updateLanguage = this.updateLanguage.bind(this);
   }
 
   updateLanguage(lang) {
     console.log("Se hizo click en: ", lang);
     //4- Implementar este metodo, que actualiza el state con el nuevo language
+    this.setState({selectedLanguage: lang});
   }
 
   render() {
+    const { selectedLanguage } = this.state;
     var languages = [
       "All",
       "Spanish",
@@ -29,14 +32,14 @@ class App extends Component {
     return (
       <div className="container">
         <div>
-          <p>Selected Language is *3- CAMBIAR POR EL IDIOMA SELECCIONADO* </p>
+          <p>Selected Language is {selectedLanguage} </p>
         </div>
         <div>
           <ul className="languages">
             <li
               style={
                 languages[0] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
+                selectedLanguage /* TODO Acceder y compararlo con el valor de state*/
                   ? { color: "#d0021b" }
                   : {}
               }
@@ -50,7 +53,7 @@ class App extends Component {
             <li
               style={
                 languages[1] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
+                selectedLanguage /* TODO Acceder y compararlo con el valor de state*/
                   ? { color: "#d0021b" }
                   : {}
               }
@@ -64,7 +67,7 @@ class App extends Component {
             <li
               style={
                 languages[2] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
+                selectedLanguage /* TODO Acceder y compararlo con el valor de state*/
                   ? { color: "#d0021b" }
                   : {}
               }
@@ -78,7 +81,7 @@ class App extends Component {
             <li
               style={
                 languages[3] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
+                selectedLanguage /* TODO Acceder y compararlo con el valor de state*/
                   ? { color: "#d0021b" }
                   : {}
               }
@@ -92,7 +95,7 @@ class App extends Component {
             <li
               style={
                 languages[4] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
+                selectedLanguage /* TODO Acceder y compararlo con el valor de state*/
                   ? { color: "#d0021b" }
                   : {}
               }
@@ -106,7 +109,7 @@ class App extends Component {
             <li
               style={
                 languages[5] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
+                selectedLanguage /* TODO Acceder y compararlo con el valor de state*/
                   ? { color: "#d0021b" }
                   : {}
               }

@@ -2,22 +2,72 @@ import React, { Component } from "react";
 import "./Game.css";
 
 class Square extends Component {
+  constructor(props){
+    super(props);
+    this.state = {}
+  }
+
+  handleClick = () => {
+    const { number, value, player, setValue, changeTurn } = this.props;
+    if (!value){
+      setValue();
+      changeTurn();
+    }
+  }
+
   render() {
+    const { number, value } = this.props;
     return (
-      <button className="square">
-        {/* TODO */}
+      <button className="square" onClick={this.handleClick}>
+        {value}
       </button>
     );
   }
 }
 
 class Board extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      playerTurn: 'X',
+      squares: [null, null, null, null, null, null, null, null, null],
+    }
+    this.renderSquare = this.renderSquare.bind(this);
+    this.setValue = this.setValue.bind(this);
+  }
+
+  changeTurn = () => {
+    this.setState(function(prevState) {
+      if (prevState.playerTurn === 'X'){
+        return {playerTurn: 'O'}
+      } else {
+        return {playerTurn: 'X'}
+      }
+    })
+  }
+
+  setValue(square) {
+    this.setState(function(prevState) {
+      let newSquares = prevState.squares.slice();
+      let turn = prevState.playerTurn;
+      newSquares[square] = turn;
+      return {squares: newSquares}
+    })
+  }
+
   renderSquare(i) {
-    return <Square />;
+    const { playerTurn, squares } = this.state;
+    return <Square value={squares[i]} player={playerTurn} setValue={() => this.setValue(i)} changeTurn={this.changeTurn} />;
   }
 
   render() {
-    var status = "Next player: X";
+    const { playerTurn, squares } = this.state;
+    var status = "Next player: " + playerTurn;
+
+    let winner = calculateWinner(squares);
+    if (winner) {
+      alert("ganó " + winner);
+    }
 
     return (
       <div>
