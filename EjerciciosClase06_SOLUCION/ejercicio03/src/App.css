@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+.header {
+  margin: 30px;
+}
+
+.formContainer {
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
+
+.inputContainer {
+  font-size: 18px;
+  margin: 5px;
+}
+
+.product {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+
+.selected {
+  border: 2px solid red;
+}

@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Avatar {
+  width: 300px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('images/placeholder.jpg');
+  margin-bottom: 10px;
+}
+
+.Comment {
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  max-width: 300px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.Comment-text {
+}
+
+.Comment-date {
+  text-align: right;
+  font-size: 13px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.UserInfo-name {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

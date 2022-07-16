@@ -1,0 +1,38 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import UserForm from './components/UserForm';
+
+class App extends Component {
+  state = {
+    user: null
+  }
+  onUserAdded = (user) => {
+    this.setState({
+      user: user
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <div>
+          <h1> Add User </h1>
+          <UserForm onSubmit={this.onUserAdded}/>
+
+          {this.state.user && 
+            <React.Fragment >
+              <h3> User Added: </h3>
+              <UserForm onSubmit={() => console.log('second form clicked')} user={this.state.user}/>
+            </React.Fragment>
+          }
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;

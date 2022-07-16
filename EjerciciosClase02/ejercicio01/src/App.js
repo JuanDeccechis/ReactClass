@@ -1,0 +1,128 @@
+import React, { Component } from "react";
+import "./App.css";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    //1- Implementar el state inicial, con una propiedad "selectedLanguage"
+
+    //2- Bindear el metodo updateLanguage
+  }
+
+  updateLanguage(lang) {
+    console.log("Se hizo click en: ", lang);
+    //4- Implementar este metodo, que actualiza el state con el nuevo language
+  }
+
+  render() {
+    var languages = [
+      "All",
+      "Spanish",
+      "French",
+      "English",
+      "Chinese",
+      "Italian"
+    ];
+    /*Creamos una copia de this en self para poder utilizar dentro del map que se
+    encuentra debajo, ya que sino perdemos el contexto*/
+    var self = this;
+    return (
+      <div className="container">
+        <div>
+          <p>Selected Language is *3- CAMBIAR POR EL IDIOMA SELECCIONADO* </p>
+        </div>
+        <div>
+          <ul className="languages">
+            <li
+              style={
+                languages[0] ===
+                  "" /* TODO Acceder y compararlo con el valor de state*/
+                  ? { color: "#d0021b" }
+                  : {}
+              }
+              onClick={function() {
+                self.updateLanguage(languages[0]);
+              }}
+              key={0}
+            >
+              {languages[0]}
+            </li>
+            <li
+              style={
+                languages[1] ===
+                  "" /* TODO Acceder y compararlo con el valor de state*/
+                  ? { color: "#d0021b" }
+                  : {}
+              }
+              onClick={function() {
+                self.updateLanguage(languages[1]);
+              }}
+              key={1}
+            >
+              {languages[1]}
+            </li>
+            <li
+              style={
+                languages[2] ===
+                  "" /* TODO Acceder y compararlo con el valor de state*/
+                  ? { color: "#d0021b" }
+                  : {}
+              }
+              onClick={function() {
+                self.updateLanguage(languages[2]);
+              }}
+              key={2}
+            >
+              {languages[2]}
+            </li>
+            <li
+              style={
+                languages[3] ===
+                  "" /* TODO Acceder y compararlo con el valor de state*/
+                  ? { color: "#d0021b" }
+                  : {}
+              }
+              onClick={function() {
+                self.updateLanguage(languages[3]);
+              }}
+              key={3}
+            >
+              {languages[3]}
+            </li>
+            <li
+              style={
+                languages[4] ===
+                  "" /* TODO Acceder y compararlo con el valor de state*/
+                  ? { color: "#d0021b" }
+                  : {}
+              }
+              onClick={function() {
+                self.updateLanguage(languages[4]);
+              }}
+              key={4}
+            >
+              {languages[4]}
+            </li>
+            <li
+              style={
+                languages[5] ===
+                  "" /* TODO Acceder y compararlo con el valor de state*/
+                  ? { color: "#d0021b" }
+                  : {}
+              }
+              onClick={function() {
+                self.updateLanguage(languages[5]);
+              }}
+              key={5}
+            >
+              {languages[5]}
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    );
+  }
+}
+
+export default App;

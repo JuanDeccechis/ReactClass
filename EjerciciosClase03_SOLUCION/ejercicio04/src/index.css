@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.card {
+  background-color: aliceblue;
+  text-align: left;
+  width: 300px;
+  height: 320px;
+  border: 1px solid grey;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.title {
+  border-bottom: 1px solid grey;
+}
+
+.subtitle {
+  color: grey
+}
+
+.description {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.tabContainer {
+  border: 1px solid grey;
+  margin-top: 10px;
+  background-color: #CCCCCC;
+}
+
+.tabsRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  border-bottom: 1px solid grey;
+  margin-bottom: 5px;
+}
+
+.tab {
+  border-bottom: 1px solid grey;
+}
+
+.selected { 
+  font-weight: bold;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
