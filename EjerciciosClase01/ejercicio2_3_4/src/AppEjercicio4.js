@@ -6,19 +6,31 @@ function formatDate(date) {
   return date.toLocaleDateString();
 }
 
+function Avatar(props) {
+  return(
+    <img
+          className="Avatar"
+          src={props.image}
+          alt={props.name}
+        />
+  )
+}
+
+function UserInfo(props) {
+  return (
+    <div className="UserInfo">
+      <Avatar image={props.author.avatarUrl} name={props.author.name}/>
+      <div className="UserInfo-name">
+        {props.author.name}
+      </div>
+    </div>
+  )
+}
+
 function Comment(props) {
   return (
     <div className="Comment">
-      <div className="UserInfo">
-        <img
-          className="Avatar"
-          src={props.comment.author.avatarUrl}
-          alt={props.comment.author.name}
-        />
-        <div className="UserInfo-name">
-          {props.comment.author.name}
-        </div>
-      </div>
+      <UserInfo author={props.comment.author}/>
       <div className="Comment-text">
         {props.comment.text}
       </div>

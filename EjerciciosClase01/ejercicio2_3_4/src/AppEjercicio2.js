@@ -4,11 +4,12 @@ import "./App.css";
 
 class Badge extends React.Component {
   render() {
+    const {name, nickName, img } = this.props.user;
     return (
       <div>
-        <img src={""} alt="avatar" />
-        <h1>Name: </h1>
-        <h3>NickName: </h3>
+        <img src={img} alt="avatar" />
+        <h1>Name: {name}</h1>
+        <h3>NickName: {nickName}</h3>
       </div>
     );
   }
@@ -30,7 +31,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div>
-          <Badge />
+          <Badge user={user} />
         </div>
       </div>
     );

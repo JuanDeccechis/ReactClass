@@ -4,27 +4,27 @@ import "./App.css";
 
 class Avatar extends React.Component {
   render() {
-    return <img src={""} alt="avatar" />;
+    return <img src={this.props.image} alt="avatar" />;
   }
 }
 
 class Name extends React.Component {
   render() {
-    return <h1>Name: </h1>;
+    return <h1>Name: {this.props.name}</h1>;
   }
 }
 
 function NickName(props) {
-  return <h3>NickName: </h3>;
+  return <h3>NickName: {props.nickName}</h3>;
 }
 
 class Badge extends React.Component {
   render() {
     return (
       <div>
-        <Avatar image={this.props.img} />
-        <Name name={this.props.name} />
-        <NickName nickName={this.props.nickName} />
+        <Avatar image={this.props.user.img} />
+        <Name name={this.props.user.name} />
+        <NickName nickName={this.props.user.nickName} />
       </div>
     );
   }
@@ -46,7 +46,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div>
-          <Badge />
+          <Badge user={user} />
         </div>
       </div>
     );
