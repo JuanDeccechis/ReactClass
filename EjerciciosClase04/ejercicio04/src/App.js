@@ -22,14 +22,27 @@ class BoardSwitcher extends Component {
       selectedIndex: 0
     };
   }
-  onToggleClick() {}
+
+  onToggleClick = () => {
+    this.setState(function(PrevState) {
+      return { selectedIndex : (PrevState.selectedIndex + 1) % 4 }
+    })
+  }
+
   render() {
+    const { boards } = this.props;
+    const { selectedIndex } = this.state;
     return (
       <div>
         <div className="boards">
-          <Board value={"Ejemplo"} selected={true} />
+          {boards.map((board, index) => {
+            return (
+              <Board key={index} value={board} selected={index === selectedIndex} />
+
+            )
+          })}
         </div>
-        <button className="button">Toggle</button>
+        <button className="button" onClick={this.onToggleClick}>Toggle</button>
       </div>
     );
   }
@@ -42,13 +55,20 @@ class ShowHideBoard extends Component {
       showBoard: true
     };
   }
-  onShowHide() {}
+  
+  onShowHide = () => {
+    this.setState(function(PrevState) {
+      return { showBoard: !PrevState.showBoard }
+    });
+  }
+
   render() {
+    const { showBoard } = this.state;
     return (
       <div>
         <div>
-          <button className="button">
-            {" "}Show/Hide{" "}
+          <button className="button" onClick={this.onShowHide}>
+            {`${showBoard ? 'Hide' : 'Show'}`}
           </button>
         </div>
         {this.state.showBoard &&

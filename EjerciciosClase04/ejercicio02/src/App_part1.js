@@ -6,6 +6,9 @@ class Users extends Component {
     return (
       <ul>
         {/* Crear un <li> para cada nombre el la lista */}
+        {this.props.list.map((item, index) => {
+          return(<li key={index}>El nombre es: {item}</li>)
+        })}
       </ul>
     );
   }

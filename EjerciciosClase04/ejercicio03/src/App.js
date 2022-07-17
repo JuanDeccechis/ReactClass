@@ -39,95 +39,26 @@ class App extends Component {
         </div>
         <div>
           <ul className="languages">
-            <li
-              style={
-                languages[0] ===
-                  self.state
-                    .selectedLanguage /* Acceder y compararlo con el valor de state*/
-                  ? { color: "#d0021b" }
-                  : {}
-              }
-              onClick={function() {
-                self.updateLanguage(languages[0]);
-              }}
-              key={0}
-            >
-              {languages[0]}
-            </li>
-            <li
-              style={
-                languages[1] ===
-                  self.state
-                    .selectedLanguage /* Acceder y compararlo con el valor de state*/
-                  ? { color: "#d0021b" }
-                  : {}
-              }
-              onClick={function() {
-                self.updateLanguage(languages[1]);
-              }}
-              key={1}
-            >
-              {languages[1]}
-            </li>
-            <li
-              style={
-                languages[2] ===
-                  self.state
-                    .selectedLanguage /* Acceder y compararlo con el valor de state*/
-                  ? { color: "#d0021b" }
-                  : {}
-              }
-              onClick={function() {
-                self.updateLanguage(languages[2]);
-              }}
-              key={2}
-            >
-              {languages[2]}
-            </li>
-            <li
-              style={
-                languages[3] ===
-                  self.state
-                    .selectedLanguage /* Acceder y compararlo con el valor de state*/
-                  ? { color: "#d0021b" }
-                  : {}
-              }
-              onClick={function() {
-                self.updateLanguage(languages[3]);
-              }}
-              key={3}
-            >
-              {languages[3]}
-            </li>
-            <li
-              style={
-                languages[4] ===
-                  self.state
-                    .selectedLanguage /* Acceder y compararlo con el valor de state*/
-                  ? { color: "#d0021b" }
-                  : {}
-              }
-              onClick={function() {
-                self.updateLanguage(languages[4]);
-              }}
-              key={4}
-            >
-              {languages[4]}
-            </li>
-            <li
-              style={
-                languages[5] ===
-                  "" /* TODO Acceder y compararlo con el valor de state*/
-                  ? { color: "#d0021b" }
-                  : {}
-              }
-              onClick={function() {
-                self.updateLanguage(languages[5]);
-              }}
-              key={5}
-            >
-              {languages[5]}
-            </li>
+            {languages.map((language, index) => {
+              return (
+                <li key={index}
+                  style={
+                    language ===
+                      self.state
+                        .selectedLanguage /* Acceder y compararlo con el valor de state*/
+                      ? { color: "#d0021b" }
+                      : {}
+                  }
+                  onClick={function() {
+                    self.updateLanguage(language);
+                  }}
+                >
+                {language}
+                </li>
+              )
+            })}
+            
+            
           </ul>
         </div>
 
