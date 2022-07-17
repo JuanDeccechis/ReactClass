@@ -20,7 +20,8 @@ class Board extends Component {
   }
 
   handleClick(i) {
-    var squares = this.state.squares.slice();
+    let squares = [];
+    squares.push(...this.state.squares);
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -29,20 +30,17 @@ class Board extends Component {
   }
 
   renderSquare(i) {
-    var self = this;
     return (
       <Square
         value={this.state.squares[i]}
-        onPress={function() {
-          self.handleClick(i);
-        }}
+        onPress={() => {this.handleClick(i);}}
       />
     );
   }
 
   render() {
-    var winner = calculateWinner(this.state.squares);
-    var status;
+    const winner = calculateWinner(this.state.squares);
+    let status;
     if (winner) {
       status = "Winner: " + winner;
     } else {
@@ -88,7 +86,7 @@ export default Game;
 
 // ========================================
 function calculateWinner(squares) {
-  var lines = [
+  const lines = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -98,8 +96,8 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6]
   ];
-  for (var i = 0; i < lines.length; i++) {
-    var [a, b, c] = lines[i];
+  for (let i = 0; i < lines.length; i++) {
+    let [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }

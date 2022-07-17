@@ -25,8 +25,11 @@ const GuestGreeting = props => {
 };
 
 const Greeting = props => {
-  /* TODO */
-  return <GuestGreeting />;
+  if (props.isLoggedIn) {
+    return <UserGreeting />;
+  } else {
+    return <GuestGreeting />;
+  }
 };
 
 class LoginControl extends Component {
@@ -35,20 +38,23 @@ class LoginControl extends Component {
     this.state = { isLoggedIn: false };
   }
 
-  handleLoginClick() {
-    /* TODO */
+  handleLoginClick = () => {
+    this.setState({ isLoggedIn: true });
   }
 
-  handleLogoutClick() {
-    /* TODO */
+  handleLogoutClick = () => {
+    this.setState({ isLoggedIn: false });
   }
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
 
     let button = null;
-    /* TODO */
-    button = <LoginButton />;
+    if (isLoggedIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick} />;
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick}/>;
+    }
 
     return (
       <div>

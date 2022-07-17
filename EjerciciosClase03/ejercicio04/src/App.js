@@ -25,27 +25,50 @@ class App extends Component {
 }
 
 class Card extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showTabs : true,
+      selectedTab: 1
+    }
+  }
+
+  toggleShowTabs = () => {
+    this.setState(function(prevState){
+      return{
+        showTabs : !prevState.showTabs
+      }
+    })
+  }
+
+  setSelectedTab = (item) => {
+    this.setState({ selectedTab: item });
+  }
 
   render() {
+    const { title, subTitle, description, tabContent } = this.props;
+    const { showTabs, selectedTab } = this.state;
+
     return (
       <div className="card">
-        <h1 className="title">COMPLETAR</h1>
-        <h4 className="subtitle">COMPLETAR</h4>
+        <h1 className="title">{title}</h1>
+        <h4 className="subtitle">{subTitle}</h4>
         <div className="description">
-          COMPLETAR
+          {description ? description : "without description"}
         </div>
-        <button>Show/Hide Tabs</button>
-        
+        <button onClick={this.toggleShowTabs}>{`${showTabs ? 'Hide' : 'Show'} Tabs`}</button>
+        {showTabs && 
         <div className="tabContainer">
           <div className="tabsRow">
-            <div className="tab selected">Tab 1</div>
-            <div className="tab">Tab 2</div>
-            <div className="tab">Tab 3</div>
+            <div className={`tab ${selectedTab === 1 && 'selected'}`} onClick={() => this.setSelectedTab(1)}>Tab 1</div>
+            <div className={`tab ${selectedTab === 2 && 'selected'}`} onClick={() => this.setSelectedTab(2)}>Tab 2</div>
+            <div className={`tab ${selectedTab === 3 && 'selected'}`} onClick={() => this.setSelectedTab(3)}>Tab 3</div>
           </div>
           <div className="tabContent">
-            COMPLETAR
+            {tabContent}
           </div>
         </div>
+        }
       </div>
     )
   }
