@@ -14,5 +14,18 @@ function UserInfo(props) {
     );
   }
 
-UserInfo.propTypes = {user: propTypes.object.isRequired}
+  UserInfo.propTypes = {
+    user: propTypes.shape({
+      name: propTypes.string.isRequired,
+      avatarUrl: propTypes.string.isRequired
+    }).isRequired
+  };
+  
+  UserInfo.defaultProps = {
+    user: {
+      name: "Sin nombre",
+      avatarUrl: ""
+    }
+  };
+  
 export default UserInfo;

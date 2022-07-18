@@ -22,5 +22,14 @@ class App extends Component {
   }
 }
 
-App.propTypes = {comments: propTypes.array.isRequired}
+
+App.propTypes = {
+  comments: propTypes.arrayOf(
+    propTypes.shape({
+      author: propTypes.object.isRequired,
+      text: propTypes.string.isRequired,
+      date: propTypes.instanceOf(Date).isRequired
+    })
+  ).isRequired
+};
 export default App;

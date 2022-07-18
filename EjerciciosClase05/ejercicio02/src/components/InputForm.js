@@ -9,31 +9,35 @@ class InputForm extends Component {
       placeholder: this.props.placeholder,
       value: ""
     }
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {this.setState({value: event.target.value});}
+  handleChange = (event) => {this.setState({value: event.target.value});}
   handleSubmit(event) {event.preventDefault(); alert("input " + this.state.value);}
 
   render() {
+    const { placeholder, label } = this.props;
+    const { value } = this.state;
     return (
       <form className="column" onSubmit={this.handleSubmit}>
-        <label className="header" htmlFor="input">{this.state.label}</label>
+        <label className="header" htmlFor="input">{label}</label>
         <input
           id="input"
-          placeholder={this.state.placeholder}
+          placeholder={placeholder}
           type="text"
           autoComplete="off"
-          value = {this.state.value}
+          value = {value}
           onChange = {this.handleChange}
         />
-        <button className="button" type="submit" disabled={this.state.value === "" ? true : false}>
+        <button className="button" type="submit" disabled={value === "" ? true : false}>
           Submit
         </button>
       </form>
     );
   }
 }
+
+InputForm.defaultProps = { label:"Name", placeholder:"Enter your name" }
 InputForm.propTypes = {label: propTypes.string.isRequired, placeholder: propTypes.string.isRequired};
+
 export default InputForm;

@@ -20,15 +20,17 @@ class InputForm extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-
-    alert("Submit, valor: " + this.state.value);
+    const { onSubmit, id } = this.props;
+    const { value } = this.state;
+    onSubmit(id, value);
   }
   render() {
+    const { id } = this.props;
     return (
       <form className="column" onSubmit={this.handleSubmit}>
         <label className="header" htmlFor="input">{this.props.label}</label>
         <input
-          id="input"
+          id={id}
           placeholder={this.props.placeholder}
           type="text"
           value={this.state.value}
@@ -46,7 +48,8 @@ class InputForm extends Component {
 InputForm.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired
+  placeholder: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 InputForm.defaultProps = {

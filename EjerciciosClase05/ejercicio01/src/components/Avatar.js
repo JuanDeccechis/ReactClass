@@ -8,5 +8,7 @@ function Avatar(props) {
     );
   };
 
+  Avatar.defaultProps = {user: {  alt: "Imagen sin nombre", avatarUrl: ""}}
   Avatar.propTypes = {user: propTypes.object.isRequired}
+
   export default Avatar;

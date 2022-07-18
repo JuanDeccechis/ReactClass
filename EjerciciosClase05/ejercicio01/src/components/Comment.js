@@ -1,5 +1,6 @@
 import React from "react";
 import UserInfo from "./UserInfo.js";
+import propTypes from "prop-types";
 import "../App.css";
 
 function formatDate(date) {
@@ -20,4 +21,11 @@ function Comment(props) {
     );
   }
 
+  Comment.propTypes = {
+    comment: propTypes.shape({
+      author: propTypes.object.isRequired,
+      text: propTypes.string.isRequired,
+      date: propTypes.instanceOf(Date).isRequired
+    }).isRequired
+  }
   export default Comment;

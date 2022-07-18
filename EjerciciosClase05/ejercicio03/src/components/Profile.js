@@ -2,16 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Profile = props => {
+  const { username, handleClick, avatar, id } = props;
   return (
-    <div>
+    <div id={id}>
       <div className="column">
-        <img className="avatar" />
-        <h2 className="username">@COMPLETAR</h2>
+        <img className="avatar" src={avatar} />
+        <h2 className="username">{username}</h2>
       </div>
       <button
         className="reset"
         onClick={() => {
-          alert("click en reset");
+          handleClick(id)
         }}
       >
         Reset
@@ -19,5 +20,7 @@ const Profile = props => {
     </div>
   );
 };
+
+Profile.PropTypes
 
 export default Profile;
