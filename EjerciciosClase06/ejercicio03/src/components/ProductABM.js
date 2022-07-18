@@ -11,11 +11,25 @@ class ProductABM extends Component {
     };
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     // TODO
+    this.setState({ [event.target.name] : event.target.value });
   }
-  handleSubmit(event) {
+
+  handleSubmit = (event) => {
     // TODO
+    event.preventDefault();
+    const { name, id, price, amount } = this.state;
+    const product = { name, id, price, amount };
+    this.props.onProductAdded(product);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { selectedProduct } = this.props;
+    if (prevProps.selectedProduct !== selectedProduct) {
+      this.setState({ name: selectedProduct.name, id: selectedProduct.id, price: selectedProduct.price, amount: selectedProduct.amount });
+      console.log("did update")
+    }
   }
 
   render() {

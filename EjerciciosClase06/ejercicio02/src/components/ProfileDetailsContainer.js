@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ProfileDetailsPresentational from "./ProfileDetailsPresentational";
 
 class ProfileDetails extends Component {
   constructor(props) {
@@ -44,18 +45,7 @@ class ProfileDetails extends Component {
   render() {
     const { user } = this.state;
     return (
-      <div className="column">
-        <h1> Detalles: </h1>
-        {user
-          ? <div>
-              <p>Nombre: {user.name}</p>
-              <p>Blog: {user.blog}</p>
-              <p>Email: {user.email}</p>
-              <p>Seguidores: {user.followers}</p>
-              <p>Sigue a: {user.following}</p>
-            </div>
-          : <p> Cargando </p>}
-      </div>
+      <ProfileDetailsPresentational user={user} />  
     );
   }
 }

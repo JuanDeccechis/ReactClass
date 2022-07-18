@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
 import InputForm from "./InputForm";
-import ProfileDetails from "./ProfileDetails";
+import ProfileDetailsContainer from "./ProfileDetailsContainer";
 
 class GithubProfiles extends Component {
   constructor(props) {
@@ -80,12 +80,12 @@ class GithubProfiles extends Component {
         <div className="row">
           <div style={{ width: "50%", textAlign: "center" }}>
             {profileOneImage !== null &&
-              <ProfileDetails username={profileOneUserName} />}
+              <ProfileDetailsContainer username={profileOneUserName} />}
           </div>
 
           <div style={{ width: "50%", textAlign: "center" }}>
             {profileTwoImage !== null &&
-              <ProfileDetails username={profileTwoUserName} />}
+              <ProfileDetailsContainer username={profileTwoUserName} />}
           </div>
         </div>
       </div>
