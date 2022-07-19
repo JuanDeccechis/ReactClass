@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect
+  Redirect,
+  withRouter
 } from "react-router-dom";
 
 import './App.css'
@@ -41,7 +42,7 @@ const AuthExample = () => (
   </div>
 );
 
-const AuthButton = () => (
+const AuthButton = withRouter(({history}) => 
     fakeAuth.isAuthenticated ? (
       <p>
         Welcome!
@@ -49,6 +50,7 @@ const AuthButton = () => (
           onClick={() => {
             // Llamar a signout y en el CB RESETEAR la ruta
             // Utilizar el history.push para resetear la ruta
+            fakeAuth.signout(() => history.push('/'));
           }}
         >
           Sign out
@@ -60,9 +62,12 @@ const AuthButton = () => (
 );
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
+  console.log(fakeAuth.isAuthenticated),
   <Route
     {...rest}
-    render={props => <Redirect to="/login"/>}
+    render={props => fakeAuth.isAuthenticated ? (
+      <Component {...props} />) : (
+      <Redirect to="/login"/>)}
   />
   // En el render, Chequear si esta autentificado. 
   // Si no lo esta, redirijir, si lo esta, renderizar el Componente que viene por props en component.
@@ -78,6 +83,7 @@ class Login extends React.Component {
 
   login = () => {
     // TODO COMPLETAR Llamar al login y en el callback actualizar el state
+    fakeAuth.authenticate(() => { this.setState({ redirectToReferrer: true }); });
   };
 
   render() {
