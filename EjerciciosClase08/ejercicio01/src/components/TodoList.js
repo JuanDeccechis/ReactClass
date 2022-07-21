@@ -1,6 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 const TodoList = props => {
   return (
@@ -20,7 +21,17 @@ const TodoList = props => {
   );
 };
 
-export default TodoList;
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
 
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired

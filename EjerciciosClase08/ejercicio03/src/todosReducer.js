@@ -2,11 +2,6 @@ import { generateId } from "./helpers";
 import { types } from "./actions";
 
 const initialState = {
-  auth: {
-    isLoggedIn: false,
-    username: '',
-    age: ''
-  },
   todos: [
     { id: 1, name: "Learn React", isComplete: false, owner: "Admin" },
     { id: 2, name: "Learn Redux", isComplete: true, owner: "Admin" },
@@ -15,10 +10,11 @@ const initialState = {
   ]
 };
 
-const reducer = (state = initialState, action) => {
+const todosReducer = (state = initialState, action) => {
   if (action.type === types.ADD_TODO) {
     const newId = generateId();
-    const newTodo = { id: newId, name: action.payload, isComplete: false, owner: state.auth.username };
+    console.log(state);
+    const newTodo = { id: newId, name: action.payload.name, isComplete: false, owner: action.payload.username };
     const updatedTodos = [...state.todos, newTodo];
     return {
       ...state,
@@ -54,27 +50,8 @@ const reducer = (state = initialState, action) => {
       todos: updatedTodos
     };
   }
-  if (action.type === types.LOGIN) {
-    return {
-      ...state,
-      auth: { 
-        isLoggedIn: true,
-        username: action.payload.username,
-        age: action.payload.age 
-      }
-    };
-  }
-  if (action.type === types.LOGOUT) {
-    return {
-      ...state,
-      auth: { 
-        isLoggedIn: false,
-        username: '',
-        age: ''
-      }
-    };
-  }
+
   return state;
 };
 
-export default reducer;
+export default todosReducer;

@@ -23,12 +23,14 @@ const TodoItem = props => {
         onChange={() => props.toogleTodo(props.id)}
       />
       {props.name}
+      created by {props.owner}
     </li>
   );
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -47,5 +49,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);
 TodoItem.propTypes = {
   name: PropTypes.string.isRequired,
   isComplete: PropTypes.bool,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  owner: PropTypes.string.isRequired
 };

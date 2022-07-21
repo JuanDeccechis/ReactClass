@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addTodo } from "../actions";
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -21,7 +23,8 @@ class TodoForm extends React.Component {
     event.preventDefault();
     if (this.state.value) {
       //Invocamos la funcion del padre
-      this.props.handleSubmit(this.state.value);
+      //this.props.handleSubmit(this.state.value);
+      this.props.addTodoLocal(this.state.value);
       //Vaciamos el input
       this.setState({
         value: ""
@@ -41,7 +44,19 @@ class TodoForm extends React.Component {
   }
 }
 
-export default TodoForm;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addTodoLocal: text => {
+      return dispatch(addTodo(text));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
 
 TodoForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired

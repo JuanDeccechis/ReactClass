@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import SystemInformation from "./SystemInformation";
+import { logout } from './actions';
 
 class Logout extends Component {
   render() {
     return (
       <div>
-      <SystemInformation username={this.props.username} age={this.props.age} />
       <button className="button" onClick={this.props.onHandleClick}>
         {" "}Logout{" "}
       </button>
@@ -17,10 +16,16 @@ class Logout extends Component {
 
 const mapStateToProps = state => {
   return {
-    username: state.auth.username,
-    age: state.auth.age
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onHandleClick: () => {
+      return dispatch(logout());
+    }
   };
 };
 
 
-export default connect(mapStateToProps)(Logout);
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);

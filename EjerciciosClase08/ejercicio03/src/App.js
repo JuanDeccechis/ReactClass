@@ -3,6 +3,7 @@ import "./App.css";
 
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+import Logout from "./Logout";
 
 import { generateId } from "./helpers";
 
@@ -17,6 +18,7 @@ class App extends Component {
           <TodoForm />
           <TodoList />
         </div>
+        <Logout />
       </div>
     );
   }

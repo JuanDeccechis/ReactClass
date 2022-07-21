@@ -23,7 +23,7 @@ class TodoForm extends React.Component {
     event.preventDefault();
     if (this.state.value) {
       //Invocamos la funcion del padre
-      this.props.addTodoLocal(this.state.value);
+      this.props.addTodoLocal(this.state.value, this.props.username);
       //Vaciamos el input
       this.setState({
         value: ""
@@ -44,13 +44,15 @@ class TodoForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    username: state.auth.username
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTodoLocal: text => {
-      return dispatch(addTodo(text));
+    addTodoLocal: (text, username) => {
+      return dispatch(addTodo(text, username));
     }
   };
 };
