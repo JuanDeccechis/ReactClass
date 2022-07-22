@@ -8,7 +8,7 @@ const initialState = {
     { id: 3, name: "Learn ReactNative ", isComplete: false },
     { id: 4, name: "Learn NodeJS", isComplete: false }
   ],
-  visibilityFilter: "all"
+  visibilityFilter: "All"
 };
 
 const reducer = (state = initialState, action) => {
@@ -55,6 +55,29 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       visibilityFilter: action.payload
+    };
+  }
+
+  if (action.type === types.FETCH_TODOS_START) {
+    return {
+      ...state,
+      fetching: true
+    };
+  }
+
+  if (action.type === types.FETCH_TODOS_SUCCESS) {
+    return {
+      ...state,
+      todos: action.payload,
+      fetching: false
+    };
+  }
+
+  if (action.type === types.FETCH_TODOS_FAIL) {
+    return {
+      ...state,
+      todos: null,
+      fetching: false
     };
   }
 

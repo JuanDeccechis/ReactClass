@@ -37,3 +37,37 @@ export const changeVisibilityFilter = filter => {
     payload: filter
   };
 };
+
+export const todosRequest = () => {
+  return {
+    type: types.FETCH_TODOS_START,
+  };
+};
+
+export const todosSuccess = todos => {
+  return {
+    type: types.FETCH_TODOS_SUCCESS,
+    payload: todos
+  };
+};
+
+export const todosFailure = () => {
+  return {
+    type: types.FETCH_TODOS_FAIL,
+  };
+};
+
+//-------------------------esto sería la funcion del sagas, en la proxima clase
+export function getTodosFiltered(filter) {
+  return function(dispatch) {
+    dispatch(todosRequest());
+    return api.fetchTodos(filter).then(
+      response => {
+        dispatch(todosSuccess(response));
+      },
+      error => {
+        dispatch(todosFailure());
+      }
+    );
+  };
+}

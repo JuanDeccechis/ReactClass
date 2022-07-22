@@ -27,11 +27,11 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 export const fetchTodos = filter =>
   delay(500).then(() => {
     switch (filter) {
-      case "all":
+      case "All":
         return fakeDatabase.todos;
-      case "active":
+      case "Active":
         return fakeDatabase.todos.filter(t => !t.isComplete);
-      case "completed":
+      case "Completed":
         return fakeDatabase.todos.filter(t => t.isComplete);
       default:
         throw new Error(`Unknown filter: ${filter}`);
