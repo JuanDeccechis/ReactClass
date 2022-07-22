@@ -6,13 +6,15 @@ export const types = {
 }
 
 export const startTimer = (currentTime) => {
+  console.log(currentTime)
   return {
     type: types.START_TIMER,
-    payload: { currentTime }
+    payload: { currentTime: currentTime }
   }
 }
 
 export const tick = (currentTime) => {
+  console.log(currentTime)
   return {
     type: types.TICK,
     payload: { currentTime }

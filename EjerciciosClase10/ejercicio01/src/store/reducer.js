@@ -18,12 +18,14 @@ export default (state = initialState, action) => {
     case types.TICK:
       return { 
         ...state,
-        elapsed: action.currentTime - state.startTime 
+        elapsed: action.payload.currentTime - state.startTime 
       }
     case types.STOP_TIMER:
       return { 
         ...state,
-        interval: null 
+        interval: null,
+        elapsed: 0,
+        startTime: 0
       };
   }
   return state;
