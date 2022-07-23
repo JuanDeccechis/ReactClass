@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getUsers, selectUserAndGetPosts } from "../actions";
+import { fetchUsersStart, selectUser, fetchPostsStart } from "../actions";
 
 import UserList from './UserList';
 
@@ -8,6 +8,12 @@ class UserListContainer extends React.Component {
   componentDidMount() {
     this.props.getUsersLocal();
   }
+
+  onSelectUserLocal = (user) => {
+    this.props.onSelectUser(user);
+    this.props.onFetchPost(user);
+  }
+
   render() {
     if(this.props.loadingUsers) {
       return <h3> Loading users.. </h3>
@@ -15,7 +21,7 @@ class UserListContainer extends React.Component {
     else {
       return <UserList 
       users={this.props.users} 
-      onSelectUser={this.props.onSelectUser} />
+      onSelectUser={this.onSelectUserLocal} />
     }
   }
 }
@@ -29,8 +35,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUsersLocal: () => dispatch(getUsers()),
-    onSelectUser: (user) => dispatch(selectUserAndGetPosts(user))
+    getUsersLocal: () => dispatch(fetchUsersStart()),
+    onSelectUser: (user) => dispatch(selectUser(user)), 
+    onFetchPost: (user) => dispatch(fetchPostsStart(user)),
   };
 };
 

@@ -29,7 +29,7 @@ export const fetchUsersFail = () => {
   };
 };
 
-export function getUsers() {
+/*export function getUsers() {
   return function(dispatch) {
     dispatch(fetchUsersStart());
     return axios.get('https://jsonplaceholder.typicode.com/users').then(
@@ -42,7 +42,7 @@ export function getUsers() {
       }
     );
   };
-}
+}*/
 
 export const selectUser = (user) => {
   return {
@@ -53,12 +53,13 @@ export const selectUser = (user) => {
 
 export const selectUserAndGetPosts = (user) => (dispatch) => {
   dispatch(selectUser(user));
-  dispatch(getPosts(user.id));
+  //dispatch(getPosts(user.id));
 }
 
-export const fetchPostsStart = () => {
+export const fetchPostsStart = (user) => {
   return {
-    type: types.FETCH_POSTS_START
+    type: types.FETCH_POSTS_START,
+    payload: user
   };
 };
 
@@ -75,7 +76,7 @@ export const fetchPostsFail = () => {
   };
 };
 
-export function getPosts(userId) {
+/*export function getPosts(userId) {
   return function(dispatch) {
     dispatch(fetchPostsStart());
     return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`).then(
@@ -88,4 +89,4 @@ export function getPosts(userId) {
       }
     );
   };
-}
+}*/

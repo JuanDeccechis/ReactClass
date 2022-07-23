@@ -7,16 +7,21 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducer";
-import thunkMiddleware from "redux-thunk";
+
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas' ;
+//Creamos el middleware
+const sagaMiddleware = createSagaMiddleware ()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(
-    thunkMiddleware // nos permite dispatchear funciones
+    sagaMiddleware // nos permite dispatchear funciones
   ))
 );
+sagaMiddleware .run(rootSaga )
 
 ReactDOM.render(
   <Provider store={store}>

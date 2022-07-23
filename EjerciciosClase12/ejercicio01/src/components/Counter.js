@@ -1,19 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { increment, decrement, incrementAsync } from '../actions';
 
-const Counter = ({ value, onIncrement, onDecrement }) =>
-  <div>
-    <button onClick={onIncrement}>
-      Increment
-    </button>
-    <button onClick={onDecrement}>
-      Decrement
-    </button>
-    <hr />
-    <div>
-      Clicked: {value} times
-    </div>
-  </div>
+class Counter extends React.Component{
+  render(){
+    const { value, onIncrement, onDecrement, onIncrementAsync } = this.props;
+    return(
+      <div>
+        <button onClick={onIncrement}>
+          Increment
+        </button>
+        <button onClick={onDecrement}>
+          Decrement
+        </button>
+        <hr />
+        <div>
+          Clicked: {value} times
+        </div>
+        <button onClick={onIncrementAsync}>
+          Increment after 1 second
+        </button>
+      </div>
+    )
+  }
+}
 
 Counter.propTypes = {
   value: PropTypes.number.isRequired,
@@ -21,5 +32,18 @@ Counter.propTypes = {
   onDecrement: PropTypes.func.isRequired
 }
 
+const mapStateToProps = (state) => {
+  return {
+    value: state
+  }
+}
 
-export default Counter;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrement: () => dispatch(increment()),
+    onDecrement: () => dispatch(decrement()),
+    onIncrementAsync: () => dispatch(incrementAsync())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Counter);

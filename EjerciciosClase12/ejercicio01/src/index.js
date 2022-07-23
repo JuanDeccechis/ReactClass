@@ -9,15 +9,22 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 
 
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas' ;
+//Creamos el middleware
+const sagaMiddleware = createSagaMiddleware ()
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(
-    
+    sagaMiddleware
   ))
 );
+// Iniciamos la Saga
+sagaMiddleware .run(rootSaga )
 
 
 ReactDOM.render(

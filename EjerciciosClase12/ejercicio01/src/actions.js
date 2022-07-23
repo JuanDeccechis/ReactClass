@@ -14,3 +14,9 @@ export const decrement = () => {
     type: types.DECREMENT
   };
 };
+export const incrementAsync = () => {
+  console.log("inc async");
+  return {
+    type: types.INCREMENT_ASYNC
+  }
+}
