@@ -16,10 +16,22 @@ const TextInput = ({
   ...props
 }) => {
   
+  const error = errors[name]
+  const touch = touched[name]
   const classes = `form-group ${className}`
   return (
     <div className={classes}>
-      
+      <Label htmlFor={name} error={error}>
+        {label}
+      </Label>
+      <input
+        id={name}
+        className="form-control"
+        type="text"
+        {...field}
+        {...props}
+      />
+      {touch && error && <InputFeedback>{error}</InputFeedback>}
     </div>
   )
 }

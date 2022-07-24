@@ -8,6 +8,14 @@ class App extends Component {
     user: null
   }
 
+  onUserAdded = (event, user) => {
+    event.preventDefault();
+    console.log(user);
+    this.setState({
+      user: user
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -17,7 +25,7 @@ class App extends Component {
         </header>
         <div>
           <h1> Add User </h1>
-          <UserForm />
+          <UserForm onSumbit={this.onUserAdded} />
 
           {this.state.user && 
             <React.Fragment >
